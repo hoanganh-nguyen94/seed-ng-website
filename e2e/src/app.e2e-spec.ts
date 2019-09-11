@@ -5,19 +5,19 @@ describe('workspace-project App', () =>
 {
   let page: AppPage;
 
-  beforeEach(() =>
-  {
+    beforeEach(() =>
+    {
     page = new AppPage();
   });
 
-  it('should display welcome message', () =>
-  {
+    it('should display welcome message', () =>
+    {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to AngularWebsite!');
+        expect(page.getTitleText()).toEqual('Welcome to angular-prerender!');
   });
 
-  afterEach(async () =>
-  {
+    afterEach(async () =>
+    {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);
     expect(logs).not.toContain(jasmine.objectContaining({

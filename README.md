@@ -4,7 +4,9 @@
 
 # Plans:
 
-- [x] Angular 8
+- [x] Angular 7
+- [x] Server-side Rendering - Universal
+- [x] Pre-rendering
 - [ ] `document is not defined` and `window is not defined` - [here](./defined.md)
 - [ ] work with cookies on the server `UniversalStorage`
 - [ ] Uses **[ngx-meta](https://github.com/fulls1z3/ngx-meta)** for SEO (*title, meta tags, and Open Graph tags for social sharing*).
