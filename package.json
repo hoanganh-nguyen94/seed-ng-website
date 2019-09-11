@@ -11,7 +11,7 @@
     "compile:server": "tsc -p compile-server.tsconfig.json",
     "build:client-and-server-bundles": "ng build --prod && ng run angular-prerender:server:production",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "serve:ssr": "node dist/server",
+    "serve:ssr": "node server-local.js",
     "build:prerender": "npm run build:ssr && npm run generate:prerender",
     "generate:prerender": "cd dist && node prerender",
     "serve:prerender": "cd dist/browser && http-server",
@@ -35,6 +35,7 @@
     "core-js": "^2.5.4",
     "express": "^4.15.2",
     "rxjs": "~6.3.3",
+    "serverless-http": "^2.3.0",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
