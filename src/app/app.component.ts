@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -37,6 +38,7 @@ import {Component} from '@angular/core';
         }
 
         .router-container {
+          background-color: #4F8EDB;
             border: 0.5rem #00afc4 solid;
             padding: 2rem;
         }
@@ -44,4 +46,9 @@ import {Component} from '@angular/core';
 })
 export class AppComponent
 {
+  public constructor(private titleService: Title)
+  {
+    this.titleService.setTitle('Home page');
+  }
+
 }

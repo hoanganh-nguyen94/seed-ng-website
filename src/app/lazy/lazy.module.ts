@@ -1,16 +1,6 @@
-import {Component, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-
-@Component({
-    selector: 'app-lazy-view',
-    template: `
-		<h3>This is content from a lazy-loaded route</h3>
-		<div>Check your Networks tab to see that the js file got loaded</div>
-		<br>
-		<div><em>/lazy/nested/</em> routes to the same page</div>
-    `
-})
-export class LazyComponent {}
+import {LazyComponent} from './lazy.component';
 
 @NgModule({
     declarations: [LazyComponent],

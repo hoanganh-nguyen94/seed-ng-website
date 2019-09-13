@@ -29,14 +29,18 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/platform-server": "~7.2.0",
+    "@angular/pwa": "^0.12.4",
     "@angular/router": "~7.2.0",
+    "@angular/service-worker": "~7.2.0",
     "@nguniversal/express-engine": "^7.1.1",
     "@nguniversal/module-map-ngfactory-loader": "0.0.0",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
     "express": "^4.15.2",
     "rxjs": "~6.3.3",
     "serverless-http": "^2.3.0",
     "tslib": "^1.9.0",
+    "web-animations-js": "^2.3.2",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
