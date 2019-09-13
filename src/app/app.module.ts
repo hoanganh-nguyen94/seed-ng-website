@@ -19,8 +19,8 @@ import {environment} from '../environments/environment';
       RouterModule.forRoot([
           {path: '', component: HomeComponent, pathMatch: 'full'},
           {path: 'husky', component: HuskyComponent, pathMatch: 'full'},
-          {path: 'lazy', loadChildren: './lazy/lazy.module#LazyModule'},
-          {path: 'lazy/nested', loadChildren: './lazy/lazy.module#LazyModule'}
+          {path: 'lazy', loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule)},
+          {path: 'lazy/nested', loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule)}
       ]),
       ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
