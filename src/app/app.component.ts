@@ -37,6 +37,7 @@ import {Component} from '@angular/core';
         }
 
         .router-container {
+          background-color: #4F8EDB;
             border: 0.5rem #00afc4 solid;
             padding: 2rem;
         }
