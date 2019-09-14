@@ -1,13 +1,16 @@
 import {Component} from '@angular/core';
 import {Title} from '@angular/platform-browser';
+import {NavigationEnd, Router} from '@angular/router';
 
+declare let ga: Function;
 @Component({
-  selector: 'app-root',
+    selector: 'app-root',
     template: `
 		<div class="app-container">
 			<h1>Angular Universal Demo utilizing Angular & Angular CLI</h1>
 			<nav class="nav-links">
 				<a routerLink="/">Home</a>
+				<a routerLink="/husky">Husky</a>
 				<a routerLink="/lazy">Lazy-loaded Route</a>
 				<a routerLink="/lazy/nested">Nested Routes work too</a>
 			</nav>
@@ -38,7 +41,7 @@ import {Title} from '@angular/platform-browser';
         }
 
         .router-container {
-          background-color: #4F8EDB;
+            background-color: #4F8EDB;
             border: 0.5rem #00afc4 solid;
             padding: 2rem;
         }
@@ -46,9 +49,19 @@ import {Title} from '@angular/platform-browser';
 })
 export class AppComponent
 {
-  public constructor(private titleService: Title)
-  {
-    this.titleService.setTitle('Home page');
-  }
+    public constructor(private titleService: Title, public router: Router)
+    {
+        this.titleService.setTitle('Home page');
+        this.router.events.subscribe(event =>
+        {
+
+            if (event instanceof NavigationEnd)
+            {
+                ga('set', 'page', event.urlAfterRedirects);
+                ga('send', 'pageview');
+
+            }
+        });
+    }
 
 }

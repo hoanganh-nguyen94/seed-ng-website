@@ -219,6 +219,7 @@ $k-right-ear: (
   animation: squiggly-anim 0.3s infinite;
   height: 60vmin;
   width: 84vmin;
+  margin: 100px auto;
 
   @media screen and (max-width: 400px) {
     // Chrome for Android chokes

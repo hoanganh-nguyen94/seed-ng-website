@@ -12,7 +12,7 @@
 - [ ] Uses **[ngx-meta](https://github.com/fulls1z3/ngx-meta)** for SEO (*title, meta tags, and Open Graph tags for social sharing*).
 - [ ] uses ngx-translate to support internationalization (i18n)
 - [ ] uses ORIGIN_URL - for absolute queries
-- [ ] @angular/service-worker(`ng add @angular/pwa --project universal-demo`)
+- [x] @angular/service-worker(`ng add @angular/pwa --project universal-demo`)
 
 
 ## References
@@ -23,3 +23,4 @@ Modules used for universal:
 - https://github.com/angular/universal/tree/master/modules/express-engine - Express Engine to run the rendering in node, in our application is used. Please note that the current version is not lower than 5.0.0-beta.5
 - https://github.com/angular/universal/tree/master/modules/hapi-engine - Hapi Engine is an alternative engine for rendering. In the example is not used, in principle in the connection scheme does not differ from express-engine
 - https://github.com/angular/universal/tree/master/modules/module-map-ngfactory-loader - the module search module for LazyLoading - the thing needed and used. Please note that the current version is not lower than 5.0.0-beta.5
+- https://scotch.io/tutorials/integrating-google-analytics-with-angular-2 
