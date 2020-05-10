@@ -1,32 +1,20 @@
-import {BrowserModule, Title} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import {AppComponent} from './app.component';
-import {HomeComponent} from './home/home.component';
-import {RouterModule} from '@angular/router';
-import {HuskyComponent} from './husky/husky.component';
-import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
+import { AppComponent } from './app.component';
+import {SpaceshipFullComponent} from './spaceship/full/spaceship-full.component';
+import {SpaceshipFrameComponent} from './spaceship/frame/spaceship-frame.component';
 
 @NgModule({
   declarations: [
-      AppComponent,
-      HomeComponent,
-      HuskyComponent
+    AppComponent,
+    SpaceshipFullComponent,
+    SpaceshipFrameComponent
   ],
   imports: [
-      BrowserModule.withServerTransition({appId: 'serverApp'}),
-      RouterModule.forRoot([
-          {path: '', component: HomeComponent, pathMatch: 'full'},
-          {path: 'husky', component: HuskyComponent, pathMatch: 'full'},
-          {path: 'lazy', loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule)},
-          {path: 'lazy/nested', loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule)}
-      ]),
-      ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    BrowserModule
   ],
-    providers: [
-        Title
-    ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
