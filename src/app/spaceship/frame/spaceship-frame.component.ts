@@ -8,6 +8,15 @@ import {gsap, DrawSVGPlugin, MorphSVGPlugin, Power2} from 'gsap/all';
 })
 export class SpaceshipFrameComponent implements OnInit, AfterViewInit {
 
+  /*
+    TODO:
+    - load full spaceship
+    - change to decorator reference class and id
+    - animation start spaceship
+    - content step: intro, web stack , mobile stack , tool , animation, security, host
+    - fix bug build pwa deploy to netlify
+   */
+
   timeline: any;
 
   spaceShip = {
@@ -63,7 +72,7 @@ export class SpaceshipFrameComponent implements OnInit, AfterViewInit {
           .to('#yandex__right', {opacity: 1, duration: 0})
           .from('#yandex__right', {x: -65, duration: 1.5});
         break;
-        //todo load left and right satelite
+        // todo load left and right satelite
       case 'satelite':
         this.timeline
           .to(['#_x32_satelite__right_4_', '#_x32_satelite__left_1_'], {opacity: 0, drawSVG: 0, duration: 1.5})
