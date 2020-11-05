@@ -11,6 +11,8 @@ import {GoogleTagManagerService} from 'angular-google-tag-manager';
         <br>
         <div><em>/lazy/nested/</em> routes to the same page</div>
         <button (click)="customEvent()">Click custom event</button>
+        <button (click)="customEventCheckIn()">Click check in</button>
+        <button (click)="customEventCheckOut()">Click check out</button>
     `
 })
 export class LazyComponent {
@@ -32,6 +34,19 @@ export class LazyComponent {
         alert('this is a custom event');
     }
 
-    view;
-    raw;
+    customEventCheckIn() {
+        const gtmTag = {
+            event: 'button-click-check-in',
+            data: new Date(),
+        };
+        this.gtmService.pushTag(gtmTag);
+    }
+
+    customEventCheckOut() {
+        const gtmTag = {
+            event: 'button-click-check-out',
+            data: 'check out date error',
+        };
+        this.gtmService.pushTag(gtmTag);
+    }
 }

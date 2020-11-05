@@ -69,7 +69,6 @@ export class AppComponent implements OnInit{
             // ga('set', 'page', event.urlAfterRedirects);
             // ga('send', 'pageview');
             const gtmTag = {event: 'page', pageName: event.url};
-            console.log(gtmTag);
 
             this.gtmService.pushTag(gtmTag);
 
