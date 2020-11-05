@@ -1,23 +1,26 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {NavigationEnd, Router} from '@angular/router';
+import {filter} from 'rxjs/operators';
+import {GoogleTagManagerService} from 'angular-google-tag-manager';
 
 declare let ga: Function;
+
 @Component({
     selector: 'app-root',
     template: `
-		<div class="app-container">
-			<h1>Angular Universal Demo utilizing Angular & Angular CLI</h1>
-			<nav class="nav-links">
-				<a routerLink="/">Home</a>
-				<a routerLink="/husky">Husky</a>
-				<a routerLink="/lazy">Lazy-loaded Route</a>
-				<a routerLink="/lazy/nested">Nested Routes work too</a>
-			</nav>
-			<div class="router-container">
-				<router-outlet></router-outlet>
-			</div>
-		</div>
+        <div class="app-container">
+            <h1>Angular Universal Demo utilizing Angular & Angular CLI</h1>
+            <nav class="nav-links">
+                <a routerLink="/">Home</a>
+                <a routerLink="/husky">Husky</a>
+                <a routerLink="/lazy">Lazy-loaded Route</a>
+                <a routerLink="/lazy/nested">Nested Routes work too</a>
+            </nav>
+            <div class="router-container">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     `,
     styles: [`
         :host {
@@ -45,22 +48,30 @@ declare let ga: Function;
             border: 0.5rem #00afc4 solid;
             padding: 2rem;
         }
-    `]
+    `],
+    providers:[GoogleTagManagerService]
 })
-export class AppComponent
-{
-    public constructor(private titleService: Title, public router: Router)
-    {
+export class AppComponent implements OnInit{
+
+    public constructor(
+        private titleService: Title,
+        public router: Router,
+        private gtmService: GoogleTagManagerService
+    ) {
+
+    }
+
+    ngOnInit(): void {
         this.titleService.setTitle('Home page');
-        this.router.events.subscribe(event =>
-        {
 
-            if (event instanceof NavigationEnd)
-            {
-                ga('set', 'page', event.urlAfterRedirects);
-                ga('send', 'pageview');
+        const naEndEvents = this.router.events.pipe(filter(event => event instanceof NavigationEnd));
+        naEndEvents.subscribe((event: NavigationEnd) => {
+            // ga('set', 'page', event.urlAfterRedirects);
+            // ga('send', 'pageview');
+            const gtmTag = {event: 'page', pageName: event.url};
+            console.log(gtmTag);
 
-            }
+            this.gtmService.pushTag(gtmTag);
         });
     }
 

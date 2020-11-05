@@ -10,10 +10,8 @@ import {Title} from '@angular/platform-browser';
 		<div><em>/lazy/nested/</em> routes to the same page</div>
     `
 })
-export class LazyComponent
-{
-    public constructor(private titleService: Title)
-    {
+export class LazyComponent {
+    public constructor(private titleService: Title) {
         this.titleService.setTitle('Lazy page');
     }
 }

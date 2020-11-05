@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {HuskyComponent} from './husky/husky.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
+import {GoogleTagManagerModule} from 'angular-google-tag-manager';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,17 @@ import {environment} from '../environments/environment';
   ],
   imports: [
       BrowserModule.withServerTransition({appId: 'serverApp'}),
+      GoogleTagManagerModule.forRoot({
+          id: 'GTM-WGDVM9P'
+      }),
+
+      ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
       RouterModule.forRoot([
           {path: '', component: HomeComponent, pathMatch: 'full'},
           {path: 'husky', component: HuskyComponent, pathMatch: 'full'},
           {path: 'lazy', loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule)},
           {path: 'lazy/nested', loadChildren: () => import('./lazy/lazy.module').then(m => m.LazyModule)}
       ]),
-      ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
   ],
     providers: [
         Title

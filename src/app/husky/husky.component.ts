@@ -6,11 +6,9 @@ import {Title} from '@angular/platform-browser';
     templateUrl: './husky.component.html',
     styleUrls: ['./husky.component.scss']
 })
-export class HuskyComponent
-{
+export class HuskyComponent {
 
-    public constructor(private titleService: Title)
-    {
+    public constructor(private titleService: Title) {
         this.titleService.setTitle('Husky page');
     }
 }
