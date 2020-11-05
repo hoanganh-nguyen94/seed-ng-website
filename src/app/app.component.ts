@@ -72,6 +72,8 @@ export class AppComponent implements OnInit{
             console.log(gtmTag);
 
             this.gtmService.pushTag(gtmTag);
+
+            console.log(this.gtmService.getDataLayer());
         });
     }
 
