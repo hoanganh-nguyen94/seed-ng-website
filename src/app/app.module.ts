@@ -4,8 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {ScullyLibModule} from '@scullyio/ng-lib';
 import {RouterModule, Routes} from "@angular/router";
-
-const appRoutes: Routes = [];
+import {AppRoutingModule} from "./app-routing.module";
 
 @NgModule({
     declarations: [
@@ -13,7 +12,7 @@ const appRoutes: Routes = [];
     ],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(appRoutes),
+        AppRoutingModule,
         ScullyLibModule
     ],
     providers: [],
