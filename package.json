@@ -22,6 +22,7 @@
     "@scullyio/ng-lib": "^1.0.0",
     "@scullyio/scully": "^1.0.0",
     "classlist.js": "^1.1.20150312",
+    "gsap": "file:libs/gsap.tgz",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",

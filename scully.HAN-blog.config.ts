@@ -7,9 +7,10 @@ export const config: ScullyConfig = {
     '/blog/:title': {
       type: 'contentFolder',
       title: {
-        folder: "./mdblog"
+        folder: "./blog"
       }
-    },},
+    },
+  },
   puppeteerLaunchOptions: {
     args: [
       "--disable-gpu",

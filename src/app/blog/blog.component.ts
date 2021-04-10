@@ -11,11 +11,10 @@ import {Observable} from "rxjs";
         <ul>
             <li *ngFor="let page of links$ | async">
                 {{ page.route }} {{ page.arbitraryValue }}
-                <span *ngFor="let arrayItem of page.arbitraryArray">
-      {{ arrayItem }}
-    </span>
+                <span *ngFor="let arrayItem of page.arbitraryArray">{{ arrayItem }}</span>
             </li>
         </ul>
+        <scully-content></scully-content>
     `,
     styles: [],
     changeDetection: ChangeDetectionStrategy.OnPush
