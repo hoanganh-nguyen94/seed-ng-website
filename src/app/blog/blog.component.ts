@@ -1,18 +1,14 @@
-import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import {ScullyRoute, ScullyRoutesService} from "@scullyio/ng-lib";
-import {Observable} from "rxjs";
-import {tap} from "rxjs/operators";
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ScullyRoute, ScullyRoutesService} from '@scullyio/ng-lib';
+import {Observable} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 
 @Component({
     selector: 'han-blog',
     template: `
-        <p>
-            blog works!
-        </p>
         <ul>
             <li *ngFor="let page of links$ | async">
-                {{ page.route }} {{ page.arbitraryValue }}
-                <span *ngFor="let arrayItem of page.arbitraryArray">{{ arrayItem }}</span>
+                <a [routerLink]="page?.route">{{ page?.title }}</a>
             </li>
         </ul>
         <scully-content></scully-content>
@@ -22,14 +18,14 @@ import {tap} from "rxjs/operators";
 })
 export class BlogComponent implements OnInit {
     links$: Observable<ScullyRoute[]> = this.scully.available$.pipe(
+        map((x) => x.filter(i => i?.route?.includes('/blog/', 0))),
         tap(console.log)
     );
 
     constructor(private scully: ScullyRoutesService) {
     }
 
-    ngOnInit() {
-
+    ngOnInit(): void {
     }
 
 }

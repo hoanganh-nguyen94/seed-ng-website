@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ScullyRoutesService} from "@scullyio/ng-lib";
-import {map, tap} from "rxjs/operators";
+import {ScullyRoutesService} from '@scullyio/ng-lib';
+import {map, tap} from 'rxjs/operators';
 
 @Component({
     selector: 'han-home',
@@ -14,7 +14,7 @@ import {map, tap} from "rxjs/operators";
     `,
     styles: [
         `
-        
+
         `
     ]
 })

@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 @Component({
     selector: 'han-root',
     template: `
-        <router-outlet></router-outlet>
+        <han-nav></han-nav>
     `,
     styleUrls: ['./app.component.scss']
 })
