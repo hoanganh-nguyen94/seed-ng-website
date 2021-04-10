@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {ScullyLibModule} from '@scullyio/ng-lib';
+import {ScullyContentModule, ScullyLibModule} from '@scullyio/ng-lib';
 import {RouterModule, Routes} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 
@@ -13,7 +13,7 @@ import {AppRoutingModule} from "./app-routing.module";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        ScullyLibModule
+        ScullyLibModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

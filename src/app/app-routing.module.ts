@@ -6,8 +6,13 @@ import {ScullyLibModule} from '@scullyio/ng-lib';
 import {RouterModule, Routes} from "@angular/router";
 
 const appRoutes: Routes = [
-    {path: '', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)},
-    {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)}
+    {path: 'home', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
+    {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
+    {path: '', redirectTo: 'blog', pathMatch: 'full'},
+
+
+    { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) },
+
 ];
 
 @NgModule({
