@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'han-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'han-root',
+    template: `
+        <router-outlet></router-outlet>
+    `,
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'HAN-blog';
+    title = 'HAN-blog';
 }

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.myPlugin = void 0;
 const scully_1 = require("@scullyio/scully");
 exports.myPlugin = 'myPlugin';
 const myFunctionPlugin = async (html) => {

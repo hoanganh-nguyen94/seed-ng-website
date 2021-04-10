@@ -1,6 +1,7 @@
 import {Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import {ScullyRoute, ScullyRoutesService} from "@scullyio/ng-lib";
 import {Observable} from "rxjs";
+import {tap} from "rxjs/operators";
 
 @Component({
     selector: 'han-blog',
@@ -20,16 +21,15 @@ import {Observable} from "rxjs";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BlogComponent implements OnInit {
-    links$: Observable<ScullyRoute[]> = this.scully.available$;
+    links$: Observable<ScullyRoute[]> = this.scully.available$.pipe(
+        tap(console.log)
+    );
 
     constructor(private scully: ScullyRoutesService) {
     }
 
     ngOnInit() {
-        // debug current pages
-        this.links$.subscribe((links) => {
-            console.log(links);
-        });
+
     }
 
 }
