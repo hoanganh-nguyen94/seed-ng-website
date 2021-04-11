@@ -1,0 +1,70 @@
+version: '3.9'
+volumes:
+  mysql_data:
+    driver: local
+
+services:
+  mysql:
+    container_name: authz-db
+    image: mysql:5.7
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+
+  keycloak:
+    container_name: authz-keycloak
+    image: jboss/keycloak
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the MySQL JDBC driver documentation in order to use it.
+      #JDBC_PARAMS: "connectTimeout=30000"
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+
+  mariadb:
+    container_name: cms-db
+    image: mariadb
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: strapi
+      MYSQL_DATABASE: strapi
+      MYSQL_USER: strapi
+      MYSQL_PASSWORD: strapi
+
+  strapi:
+    container_name: cms-blog
+    image: strapi/strapi
+    environment:
+      DATABASE_CLIENT: mysql
+      DATABASE_HOST: mariadb
+      DATABASE_PORT: 3306
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: strapi
+      DATABASE_SSL: 'false'
+    volumes:
+      - ./app:/srv/app
+    ports:
+      - '1337:1337'
+    depends_on:
+      - mariadb
+
+#  client:
+#    container_name: seed-blog
+#    restart: always
+#    build: ./client
+#    ports:
+#      - "4200:80"
