@@ -8,6 +8,7 @@ import {HuskyComponent} from './husky/husky.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {GoogleTagManagerModule} from 'angular-google-tag-manager';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {GoogleTagManagerModule} from 'angular-google-tag-manager';
       HuskyComponent
   ],
   imports: [
+      HttpClientModule,
       BrowserModule.withServerTransition({appId: 'serverApp'}),
       GoogleTagManagerModule.forRoot({
           id: 'GTM-WGDVM9P'

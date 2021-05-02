@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {NavigationEnd, Router} from '@angular/router';
-import {filter} from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
 import {GoogleTagManagerService} from 'angular-google-tag-manager';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 declare let ga: Function;
 
@@ -49,19 +50,50 @@ declare let ga: Function;
             padding: 2rem;
         }
     `],
-    providers:[GoogleTagManagerService]
+    providers: [GoogleTagManagerService]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
+    private httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        })
+    };
 
     public constructor(
         private titleService: Title,
         public router: Router,
+        private http: HttpClient,
         private gtmService: GoogleTagManagerService
     ) {
 
     }
 
     ngOnInit(): void {
+        const httpOptions = {...this.httpOptions};
+
+        this.http.post('https://cms-i18n.herokuapp.com/graphql', {
+            query: `query SectionContents($sort: String, $limit: Int, $start: Int, $where: JSON, $publicationState: PublicationState, $locale: String) {
+  response: sectionContents(
+    sort: $sort
+    limit: $limit
+    start: $start
+    where: $where
+    publicationState: $publicationState
+    locale: $locale
+  ) {
+    id
+    code
+    labels {
+      label
+      value
+    }
+  }
+}`,
+            variables: {locale: 'en'}
+        }, httpOptions)
+            .pipe(map(({data}: any) => data)).subscribe(console.log);
+
         this.titleService.setTitle('Home page');
 
         const naEndEvents = this.router.events.pipe(filter(event => event instanceof NavigationEnd));
